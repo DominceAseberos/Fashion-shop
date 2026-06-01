@@ -4,6 +4,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import look1 from "@/assets/look-01.jpg";
 import look2 from "@/assets/look-02.jpg";
 import look3 from "@/assets/look-03.jpg";
+import look4 from "@/assets/look-04.png";
+import look5 from "@/assets/look-05.png";
+import look6 from "@/assets/look-06.png";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { ProductModal } from "./ProductModal";
 
@@ -59,6 +62,45 @@ const looks: ReadonlyArray<Look> = [
     image: look3,
     alt: "Model in a floor-length oxblood silk gown in a marble interior with classical columns.",
   },
+  {
+    id: "look-04",
+    index: "IV",
+    name: "The Azure Trench",
+    subtitle: "Structured, oversized silhouette",
+    notes: [
+      { label: "Fabric", value: "Heavyweight cotton gabardine" },
+      { label: "Origin", value: "Prato, Tuscany" },
+      { label: "Edition", value: "24 garments" },
+    ],
+    image: look4,
+    alt: "Model wearing a structured, oversized azure blue trench coat photographed against a neutral stone background.",
+  },
+  {
+    id: "look-05",
+    index: "V",
+    name: "The Emerald Silk",
+    subtitle: "Flowing, bias-cut evening dress",
+    notes: [
+      { label: "Fabric", value: "Pure silk charmeuse" },
+      { label: "Origin", value: "Como, Lombardy" },
+      { label: "Edition", value: "10 garments" },
+    ],
+    image: look5,
+    alt: "Model wearing a flowing emerald green silk dress with dramatic chiaroscuro lighting.",
+  },
+  {
+    id: "look-06",
+    index: "VI",
+    name: "The Charcoal Knit",
+    subtitle: "Chunky, oversized proportions",
+    notes: [
+      { label: "Fabric", value: "Cashmere and merino blend" },
+      { label: "Origin", value: "Biella, Piedmont" },
+      { label: "Edition", value: "40 garments" },
+    ],
+    image: look6,
+    alt: "Model wearing a chunky, oversized charcoal grey knit sweater and tailored wool skirt in a minimalist studio.",
+  },
 ];
 
 export function Lookbook() {
@@ -113,7 +155,7 @@ export function Lookbook() {
             </h2>
           </div>
           <p className="hidden max-w-xs text-sm leading-relaxed text-cream/70 md:block">
-            Three garments. Each photographed on the woman it was cut for.
+            Six garments. Each photographed on the woman it was cut for.
             Scroll to traverse the edit.
           </p>
         </div>

@@ -32,9 +32,9 @@ export function Nav() {
         <a
           href="#top"
           aria-label="Cheq — home"
-          className="font-display text-2xl tracking-widest text-foreground transition-colors"
+          className="transition-opacity hover:opacity-70"
         >
-          CHEQ
+          <img src="/logo.png" alt="CHEQ" className="h-12 mix-blend-multiply md:h-14" />
         </a>
         <ul className="hidden items-center gap-10 md:flex">
           {links.map((l) => (

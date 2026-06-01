@@ -32,7 +32,7 @@ export function Atelier() {
           <div className="overflow-hidden">
             <img
               src={atelierImg}
-              alt="Close-up of hands hand-stitching a draped fabric in the Vayora atelier."
+              alt="Close-up of hands hand-stitching a draped fabric in the Cheq atelier."
               width={1600}
               height={1200}
               loading="lazy"

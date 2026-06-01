@@ -31,10 +31,10 @@ export function Nav() {
       >
         <a
           href="#top"
-          aria-label="Vayora — home"
+          aria-label="Cheq — home"
           className="font-display text-2xl tracking-widest text-foreground transition-colors"
         >
-          VAYORA
+          CHEQ
         </a>
         <ul className="hidden items-center gap-10 md:flex">
           {links.map((l) => (

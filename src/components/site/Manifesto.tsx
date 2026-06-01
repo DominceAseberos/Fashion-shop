@@ -96,7 +96,7 @@ export function Manifesto() {
           <div className="mt-16 max-w-xl space-y-6 font-body text-lg leading-relaxed text-foreground/85">
             <p>
               <span className="smallcaps mr-2 text-accent">I.</span>
-              Vayora is a house built on patience. Each piece is drafted, cut, and
+              Cheq is a house built on patience. Each piece is drafted, cut, and
               finished by hand — a quiet protest against the disposable.
             </p>
             <p>

@@ -58,7 +58,7 @@ export function Climax() {
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2 select-none whitespace-nowrap text-center font-display text-[28vw] font-light leading-none tracking-[-0.04em] text-taupe/25"
       >
-        VAYORA — VAYORA
+        CHEQ — CHEQ
       </div>
 
       <div className="relative mx-auto grid max-w-[1440px] grid-cols-12 gap-6 px-6 md:px-10">
@@ -86,7 +86,7 @@ export function Climax() {
             A garment is finished only when it <em className="italic text-accent">moves</em>.
           </h2>
           <p className="mt-6 max-w-sm text-base leading-relaxed text-foreground/80">
-            Cut on the body. Released on the street. Vayora is not a still image —
+            Cut on the body. Released on the street. Cheq is not a still image —
             it is the shape a woman makes when she leaves a room.
           </p>
         </div>

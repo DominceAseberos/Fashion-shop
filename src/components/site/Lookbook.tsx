@@ -183,7 +183,7 @@ export function Lookbook() {
               />
               <span
                 aria-hidden="true"
-                className="absolute left-5 top-5 font-display text-[7rem] leading-none text-cream/30 md:text-[10rem]"
+                className="absolute bottom-5 left-5 font-display text-[7rem] leading-none text-cream/30 md:text-[10rem]"
               >
                 {look.index}
               </span>

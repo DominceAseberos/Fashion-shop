@@ -18,7 +18,7 @@ export function Hero() {
       gsap.fromTo(
         titleRef.current,
         { yPercent: 8, opacity: 0 },
-        { yPercent: 0, opacity: 1, duration: 1.6, ease: "power3.out", delay: 0.2 }
+        { yPercent: 0, opacity: 1, duration: 0.8, ease: "power3.out" }
       );
       gsap.to(imgRef.current, {
         yPercent: 12,
@@ -32,7 +32,6 @@ export function Hero() {
       });
       gsap.to(titleRef.current, {
         yPercent: -30,
-        opacity: 0.2,
         ease: "none",
         scrollTrigger: {
           trigger: sectionRef.current,

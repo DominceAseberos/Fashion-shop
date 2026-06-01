@@ -113,16 +113,16 @@ export function Lookbook() {
     if (reduced || !ref.current || !trackRef.current) return;
     const ctx = gsap.context(() => {
       const track = trackRef.current!;
-      const totalScroll = track.scrollWidth - window.innerWidth;
-      if (totalScroll <= 0) return;
+      const getScrollAmount = () => track.scrollWidth - window.innerWidth;
+      if (getScrollAmount() <= 0) return;
 
       gsap.to(track, {
-        x: -totalScroll,
+        x: () => -getScrollAmount(),
         ease: "none",
         scrollTrigger: {
           trigger: ref.current,
           start: "top top",
-          end: () => `+=${totalScroll}`,
+          end: () => `+=${getScrollAmount()}`,
           pin: true,
           scrub: 1,
           anticipatePin: 1,

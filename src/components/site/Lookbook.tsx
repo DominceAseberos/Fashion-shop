@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import look1 from "@/assets/look-01.jpg";
-import look2 from "@/assets/look-02.jpg";
+import look2 from "@/assets/look-02.png";
 import look3 from "@/assets/look-03.jpg";
 import look4 from "@/assets/look-04.png";
 import look5 from "@/assets/look-05.png";

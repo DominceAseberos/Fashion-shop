@@ -1,0 +1,184 @@
+import { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import look1 from "@/assets/look-01.jpg";
+import look2 from "@/assets/look-02.jpg";
+import look3 from "@/assets/look-03.jpg";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { ProductModal } from "./ProductModal";
+
+gsap.registerPlugin(ScrollTrigger);
+
+interface Look {
+  readonly id: string;
+  readonly index: string;
+  readonly name: string;
+  readonly subtitle: string;
+  readonly notes: ReadonlyArray<{ label: string; value: string }>;
+  readonly image: string;
+  readonly alt: string;
+}
+
+const looks: ReadonlyArray<Look> = [
+  {
+    id: "look-01",
+    index: "I",
+    name: "The Ivory Suit",
+    subtitle: "Single-breasted, peak lapel",
+    notes: [
+      { label: "Fabric", value: "Italian virgin wool 110" },
+      { label: "Origin", value: "Biella, Piedmont" },
+      { label: "Edition", value: "32 garments" },
+    ],
+    image: look1,
+    alt: "Model in a structured ivory tailored suit photographed against a stone wall.",
+  },
+  {
+    id: "look-02",
+    index: "II",
+    name: "The Onyx Drape",
+    subtitle: "Bias-cut, hand-finished hem",
+    notes: [
+      { label: "Fabric", value: "Wool crepe, double face" },
+      { label: "Origin", value: "Como, Lombardy" },
+      { label: "Edition", value: "18 garments" },
+    ],
+    image: look2,
+    alt: "Close detail of draped black wool garment in dramatic chiaroscuro light.",
+  },
+  {
+    id: "look-03",
+    index: "III",
+    name: "The Oxblood Column",
+    subtitle: "Floor-length, low cowl back",
+    notes: [
+      { label: "Fabric", value: "Silk satin, garment-dyed" },
+      { label: "Origin", value: "Como, Lombardy" },
+      { label: "Edition", value: "12 garments" },
+    ],
+    image: look3,
+    alt: "Model in a floor-length oxblood silk gown in a marble interior with classical columns.",
+  },
+];
+
+export function Lookbook() {
+  const ref = useRef<HTMLElement | null>(null);
+  const trackRef = useRef<HTMLDivElement | null>(null);
+  const reduced = useReducedMotion();
+  const [selectedLook, setSelectedLook] = useState<Look | null>(null);
+
+  useEffect(() => {
+    if (reduced || !ref.current || !trackRef.current) return;
+    const ctx = gsap.context(() => {
+      const track = trackRef.current!;
+      const totalScroll = track.scrollWidth - window.innerWidth;
+      if (totalScroll <= 0) return;
+
+      gsap.to(track, {
+        x: -totalScroll,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ref.current,
+          start: "top top",
+          end: () => `+=${totalScroll}`,
+          pin: true,
+          scrub: 1,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+        },
+      });
+    }, ref);
+    return () => ctx.revert();
+  }, [reduced]);
+
+  // Handle escape to close here if needed, or inside ProductModal
+  // ProductModal handles its own escape key
+
+  return (
+    <section
+      ref={ref}
+      id="lookbook"
+      aria-labelledby="lookbook-heading"
+      className="relative bg-ink py-24 text-cream md:py-0"
+    >
+      <div className="mx-auto max-w-[1440px] px-6 pt-20 md:px-10 md:pt-32">
+        <div className="flex items-end justify-between">
+          <div>
+            <p className="smallcaps text-cream/60">Chapter 02</p>
+            <h2
+              id="lookbook-heading"
+              className="mt-4 font-display text-5xl leading-none tracking-[-0.015em] md:text-7xl"
+            >
+              The Collection
+            </h2>
+          </div>
+          <p className="hidden max-w-xs text-sm leading-relaxed text-cream/70 md:block">
+            Three garments. Each photographed on the woman it was cut for.
+            Scroll to traverse the edit.
+          </p>
+        </div>
+      </div>
+
+      <div
+        ref={trackRef}
+        className="lookbook__track mt-16 flex w-max gap-10 px-6 md:mt-24 md:gap-20 md:px-10"
+      >
+        {looks.map((look) => (
+          <article
+            key={look.id}
+            className="lookbook__item flex w-[78vw] shrink-0 flex-col gap-6 md:w-[58vw] lg:w-[44vw] group cursor-pointer"
+            onClick={() => setSelectedLook(look)}
+          >
+            <div className="relative overflow-hidden bg-ink/40">
+              <img
+                src={look.image}
+                alt={look.alt}
+                width={1280}
+                height={1920}
+                loading="lazy"
+                decoding="async"
+                className="h-[72vh] w-full object-cover transition-transform duration-700 group-hover:scale-105 md:h-[78vh]"
+              />
+              <span
+                aria-hidden="true"
+                className="absolute left-5 top-5 font-display text-[7rem] leading-none text-cream/30 md:text-[10rem]"
+              >
+                {look.index}
+              </span>
+            </div>
+
+            <div className="grid grid-cols-12 gap-4">
+              <div className="col-span-12 md:col-span-7">
+                <p className="smallcaps text-accent group-hover:text-cream transition-colors">Look {look.index}</p>
+                <h3 className="mt-2 font-display text-3xl leading-tight group-hover:text-accent transition-colors md:text-4xl">
+                  {look.name}
+                </h3>
+                <p className="mt-1 text-sm italic text-cream/70">
+                  {look.subtitle}
+                </p>
+              </div>
+              <dl className="col-span-12 grid grid-cols-3 gap-3 md:col-span-5">
+                {look.notes.map((n) => (
+                  <div key={n.label}>
+                    <dt className="smallcaps text-cream/50">{n.label}</dt>
+                    <dd className="mt-1 text-sm text-cream/90">{n.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          </article>
+        ))}
+
+        <div className="flex w-[40vw] shrink-0 items-center pr-10">
+          <p className="font-display text-3xl italic leading-tight text-cream/80 md:text-5xl">
+            …and the rest, you must see in person.
+          </p>
+        </div>
+      </div>
+      
+      {selectedLook && (
+        <ProductModal look={selectedLook} onClose={() => setSelectedLook(null)} />
+      )}
+    </section>
+  );
+}

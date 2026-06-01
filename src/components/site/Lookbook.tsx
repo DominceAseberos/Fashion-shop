@@ -179,7 +179,7 @@ export function Lookbook() {
                 height={1920}
                 loading="lazy"
                 decoding="async"
-                className="h-[72vh] w-full object-cover transition-transform duration-700 group-hover:scale-105 md:h-[78vh]"
+                className="h-[55vh] w-full object-cover transition-transform duration-700 group-hover:scale-105 md:h-[60vh]"
               />
               <span
                 aria-hidden="true"

@@ -10,7 +10,7 @@ import { useLenis } from "@/hooks/useLenis";
 export default function App() {
   useLenis();
   return (
-    <div className="relative min-h-screen bg-background text-foreground">
+    <div className="relative min-h-[100dvh] overflow-x-hidden bg-background text-foreground">
       <Nav />
       <main>
         <Hero />

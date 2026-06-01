@@ -141,7 +141,7 @@ export function Lookbook() {
       ref={ref}
       id="lookbook"
       aria-labelledby="lookbook-heading"
-      className="relative bg-ink py-24 text-cream md:py-0"
+      className="relative overflow-hidden bg-ink py-24 text-cream md:py-0"
     >
       <div className="mx-auto max-w-[1440px] px-6 pt-20 md:px-10 md:pt-32">
         <div className="flex items-end justify-between">

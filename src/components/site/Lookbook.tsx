@@ -141,9 +141,9 @@ export function Lookbook() {
       ref={ref}
       id="lookbook"
       aria-labelledby="lookbook-heading"
-      className="relative overflow-hidden bg-ink py-24 text-cream md:py-0"
+      className="relative flex min-h-screen flex-col justify-center overflow-hidden bg-ink text-cream"
     >
-      <div className="mx-auto max-w-[1440px] px-6 pt-20 md:px-10 md:pt-32">
+      <div className="mx-auto w-full max-w-[1440px] px-6 pt-20 md:px-10">
         <div className="flex items-end justify-between">
           <div>
             <p className="smallcaps text-cream/60">Chapter 02</p>
@@ -163,7 +163,7 @@ export function Lookbook() {
 
       <div
         ref={trackRef}
-        className="lookbook__track mt-16 flex w-max gap-10 px-6 md:mt-24 md:gap-20 md:px-10"
+        className="lookbook__track mt-12 flex w-max items-center gap-10 px-6 md:mt-16 md:gap-20 md:px-10"
       >
         {looks.map((look) => (
           <article

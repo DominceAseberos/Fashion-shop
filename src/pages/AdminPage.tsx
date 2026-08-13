@@ -51,14 +51,15 @@ type LegacyCaretDocument = Document & {
   caretRangeFromPoint?: (x: number, y: number) => Range | null;
 };
 
+function isTextNode(node: Node | null | undefined): node is Text {
+  return node?.nodeType === 3;
+}
+
 function firstTextNode(element: Element): Text | null {
-  const walker = element.ownerDocument.createTreeWalker(
-    element,
-    NodeFilter.SHOW_TEXT,
-  );
+  const walker = element.ownerDocument.createTreeWalker(element, 4);
   let node = walker.nextNode();
   while (node) {
-    if (node instanceof Text && node.nodeValue?.trim()) return node;
+    if (isTextNode(node) && node.nodeValue?.trim()) return node;
     node = walker.nextNode();
   }
   return null;
@@ -66,9 +67,9 @@ function firstTextNode(element: Element): Text | null {
 
 function textNodeAtPoint(doc: Document, x: number, y: number): Text | null {
   const position = doc.caretPositionFromPoint?.(x, y);
-  if (position?.offsetNode instanceof Text) return position.offsetNode;
+  if (isTextNode(position?.offsetNode)) return position.offsetNode;
   const range = (doc as LegacyCaretDocument).caretRangeFromPoint?.(x, y);
-  if (range?.startContainer instanceof Text) return range.startContainer;
+  if (isTextNode(range?.startContainer)) return range.startContainer;
   return null;
 }
 
@@ -120,11 +121,12 @@ export function AdminPage() {
         clearHighlight();
         return;
       }
-      const target = event.target;
-      if (!(target instanceof HTMLElement)) return;
-      if (highlighted === target) return;
+      const target = event.target as Node | null;
+      if (!target || target.nodeType !== 1) return;
+      const element = target as HTMLElement;
+      if (highlighted === element) return;
       clearHighlight();
-      highlighted = target;
+      highlighted = element;
       highlighted.style.outline = "1px solid rgba(244,241,236,.95)";
       highlighted.style.outlineOffset = "2px";
     };
@@ -133,11 +135,13 @@ export function AdminPage() {
       if (previewModeRef.current === "interact") return;
       event.preventDefault();
       event.stopPropagation();
-      const target = event.target;
-      if (!(target instanceof HTMLElement)) return;
+      const target = event.target as Node | null;
+      if (!target || target.nodeType !== 1) return;
+      const element = target as HTMLElement;
 
-      if (target instanceof HTMLImageElement) {
-        const selector = cssPath(target);
+      if (element.tagName.toLowerCase() === "img") {
+        const image = element as HTMLImageElement;
+        const selector = cssPath(image);
         const routePatch = getCmsPatches().find(
           (patch): patch is CmsImagePatch =>
             patch.kind === "image" &&
@@ -148,8 +152,8 @@ export function AdminPage() {
           kind: "image",
           route,
           selector,
-          src: routePatch?.src ?? target.src,
-          alt: routePatch?.alt ?? target.alt,
+          src: routePatch?.src ?? image.src,
+          alt: routePatch?.alt ?? image.alt,
           scope: routePatch?.scope ?? "route",
           tag: "img",
         });
@@ -157,7 +161,7 @@ export function AdminPage() {
         return;
       }
 
-      const node = textNodeAtPoint(doc, event.clientX, event.clientY) ?? firstTextNode(target);
+      const node = textNodeAtPoint(doc, event.clientX, event.clientY) ?? firstTextNode(element);
       if (!node?.parentElement) return;
       const parent = node.parentElement;
       const selector = cssPath(parent);

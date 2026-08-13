@@ -58,7 +58,7 @@ export function ProductModal({ look, onClose }: ProductModalProps) {
       
       {/* Modal Content */}
       <div 
-        className="relative flex w-full max-w-5xl flex-col bg-background text-foreground shadow-2xl overflow-hidden md:flex-row max-h-[90vh]"
+        className="relative flex max-h-[94svh] w-full max-w-5xl flex-col overflow-hidden bg-background text-foreground shadow-2xl md:max-h-[90vh] md:flex-row"
         role="dialog"
         aria-modal="true"
         aria-labelledby="modal-title"
@@ -72,16 +72,16 @@ export function ProductModal({ look, onClose }: ProductModalProps) {
         </button>
 
         {/* Image Half */}
-        <div className="w-full md:w-1/2 overflow-hidden bg-ink">
+        <div className="h-[30svh] min-h-40 w-full shrink-0 overflow-hidden bg-ink md:h-auto md:min-h-0 md:w-1/2">
           <img
             src={look.image}
             alt={look.alt}
-            className="h-64 w-full object-cover md:h-full md:max-h-[90vh]"
+            className="h-full w-full object-cover md:max-h-[90vh]"
           />
         </div>
 
         {/* Details Half */}
-        <div className="flex w-full flex-col p-8 md:w-1/2 md:p-12 overflow-y-auto">
+        <div className="flex min-h-0 w-full flex-col overflow-y-auto overscroll-contain p-5 sm:p-8 md:w-1/2 md:p-12">
           <p className="smallcaps text-accent mb-2">Look {look.index}</p>
           <h2 id="modal-title" className="font-display text-4xl leading-tight md:text-5xl mb-1">
             {look.name}

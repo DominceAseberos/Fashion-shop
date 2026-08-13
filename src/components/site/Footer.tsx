@@ -1,26 +1,36 @@
+import { Link } from "react-router-dom";
+
 export function Footer() {
   const year = new Date().getFullYear();
   return (
-    <footer className="relative border-t border-border bg-background">
-      <div className="mx-auto max-w-[1440px] px-6 py-12 md:px-10">
+    <footer className="relative border-t border-foreground/10 bg-background">
+      <div className="mx-auto max-w-[1440px] px-5 py-10 sm:px-6 sm:py-12 md:px-10">
         <div className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-end">
           <div>
-            <p className="font-display text-5xl tracking-[0.25em] text-foreground md:text-7xl">
+            <Link
+              to="/"
+              className="font-display text-[clamp(3rem,10vw,6rem)] leading-none tracking-[0.18em] text-foreground transition-colors hover:text-accent"
+            >
               CHEQ
-            </p>
-            <p className="smallcaps mt-3 text-muted-foreground">
+            </Link>
+            <p className="smallcaps mt-4 text-foreground/45">
               Quiet luxury for the modern silhouette
             </p>
           </div>
-          <ul className="flex flex-wrap gap-6">
-            {["Instagram", "Pinterest", "Journal", "Press"].map((l) => (
-              <li key={l}>
-                <a
-                  href="#"
-                  className="smallcaps text-foreground/70 transition-colors hover:text-accent"
+          <ul className="flex flex-wrap gap-x-6 gap-y-4 sm:gap-x-8">
+            {[
+              ["Collection", "/collection"],
+              ["Atelier", "/atelier"],
+              ["Journal", "/journal"],
+              ["Contact", "/contact"],
+            ].map(([label, to]) => (
+              <li key={label}>
+                <Link
+                  to={to}
+                  className="smallcaps text-foreground/65 transition-colors hover:text-accent"
                 >
-                  {l}
-                </a>
+                  {label}
+                </Link>
               </li>
             ))}
           </ul>

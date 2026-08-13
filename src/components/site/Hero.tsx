@@ -48,7 +48,7 @@ export function Hero() {
     <section
       id="top"
       ref={sectionRef}
-      className="relative isolate min-h-screen w-full overflow-hidden bg-background"
+      className="relative isolate min-h-[100svh] w-full overflow-hidden bg-background"
     >
       <div className="absolute inset-0">
         <img
@@ -59,7 +59,7 @@ export function Hero() {
           height={1920}
           fetchPriority="high"
           decoding="async"
-          className="h-[115%] w-full object-cover object-[50%_30%]"
+          className="h-[112%] w-full object-cover object-[50%_30%]"
         />
         <div
           aria-hidden="true"
@@ -67,15 +67,15 @@ export function Hero() {
         />
       </div>
 
-      <div className="relative z-10 mx-auto flex min-h-screen max-w-[1440px] flex-col justify-between px-6 pb-16 pt-32 md:px-10 md:pt-40">
-        <div className="flex items-baseline justify-between">
+      <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-[1440px] flex-col justify-between px-5 pb-10 pt-28 sm:px-6 sm:pb-14 md:px-10 md:pb-16 md:pt-40">
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between">
           <span className="smallcaps text-foreground/70">Vol. 01 — The Quiet Edit</span>
           <span className="smallcaps text-foreground/70">Autumn / Winter</span>
         </div>
 
         <h1
           ref={titleRef}
-          className="font-display text-[14vw] leading-[0.85] tracking-[-0.02em] text-foreground md:text-[11rem] lg:text-[14rem]"
+          className="font-display text-[17vw] leading-[0.84] tracking-[-0.03em] text-foreground sm:text-[14vw] md:text-[11rem] lg:text-[14rem]"
         >
           Quiet
           <br />

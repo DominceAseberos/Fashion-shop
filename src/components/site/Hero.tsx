@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import heroImg from "@/assets/hero-portrait.jpg";
@@ -68,9 +69,21 @@ export function Hero() {
       </div>
 
       <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-[1440px] flex-col justify-between px-5 pb-10 pt-28 sm:px-6 sm:pb-14 md:px-10 md:pb-16 md:pt-40">
-        <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between">
-          <span className="smallcaps text-foreground/70">Vol. 01 — The Quiet Edit</span>
-          <span className="smallcaps text-foreground/70">Autumn / Winter</span>
+        <div>
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between">
+            <span className="smallcaps text-foreground/70">Vol. 01 — The Quiet Edit</span>
+            <span className="smallcaps text-foreground/70">Autumn / Winter</span>
+          </div>
+
+          <Link
+            to="/admin"
+            className="smallcaps mt-4 inline-flex min-h-11 items-center gap-3 bg-ink px-4 py-3 text-cream shadow-sm transition-[background-color,transform] duration-300 hover:-translate-y-0.5 hover:bg-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground sm:px-5"
+            aria-label="Open the guest CMS test admin"
+          >
+            <span>Test Admin</span>
+            <span className="text-cream/55">Guest CMS</span>
+            <span aria-hidden="true">→</span>
+          </Link>
         </div>
 
         <h1

@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import heroImg from "@/assets/hero-portrait.jpg";
@@ -12,7 +11,6 @@ export function Hero() {
   const imgRef = useRef<HTMLImageElement | null>(null);
   const titleRef = useRef<HTMLHeadingElement | null>(null);
   const reduced = useReducedMotion();
-  const isCmsPreview = typeof window !== "undefined" && window.self !== window.top;
 
   useEffect(() => {
     if (reduced || !sectionRef.current) return;
@@ -75,18 +73,6 @@ export function Hero() {
             <span className="smallcaps text-foreground/70">Vol. 01 — The Quiet Edit</span>
             <span className="smallcaps text-foreground/70">Autumn / Winter</span>
           </div>
-
-          {!isCmsPreview && (
-            <Link
-              to="/admin"
-              className="smallcaps mt-4 inline-flex min-h-11 items-center gap-3 bg-ink px-4 py-3 text-cream shadow-sm transition-[background-color,transform] duration-300 hover:-translate-y-0.5 hover:bg-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground sm:px-5"
-              aria-label="Open the guest CMS test admin"
-            >
-              <span>Test Admin</span>
-              <span className="text-cream/55">Guest CMS</span>
-              <span aria-hidden="true">→</span>
-            </Link>
-          )}
         </div>
 
         <h1

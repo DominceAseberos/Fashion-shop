@@ -124,11 +124,16 @@ export default {
         ];
 
         for (const look of initialLooks) {
-          await strapi.documents('api::garment.garment').create({
-            data: { ...look, status: 'published' },
+          const entry = await strapi.documents('api::garment.garment').create({
+            data: look,
           });
+          if (entry && entry.documentId) {
+            await strapi.documents('api::garment.garment').publish({
+              documentId: entry.documentId,
+            });
+          }
         }
-        strapi.log.info('Seeded 6 looks into Strapi successfully!');
+        strapi.log.info('Seeded and published 6 looks into Strapi successfully!');
       }
     } catch (err) {
       strapi.log.warn('Could not auto-seed garments:', err);

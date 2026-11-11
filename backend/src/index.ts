@@ -133,5 +133,24 @@ export default {
     } catch (err) {
       strapi.log.warn('Could not auto-seed garments:', err);
     }
+
+    // 3. Auto-seed demo administrator if none exists
+    try {
+      const hasAdmin = await strapi.service('admin::user').exists();
+      if (!hasAdmin) {
+        const superAdminRole = await strapi.service('admin::role').getSuperAdmin();
+        await strapi.service('admin::user').create({
+          email: 'admin@cheq.atelier',
+          firstname: 'Cheq',
+          lastname: 'Admin',
+          password: 'AdminCheq2026!',
+          isActive: true,
+          roles: [superAdminRole.id],
+        });
+        strapi.log.info('Demo admin ready: admin@cheq.atelier / AdminCheq2026!');
+      }
+    } catch (err) {
+      strapi.log.warn('Could not auto-create admin user:', err);
+    }
   },
 };

@@ -1,0 +1,32 @@
+{
+  "name": "cheq-strapi-backend",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Strapi CMS v5 for Cheq Fashion Storefront",
+  "scripts": {
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "strapi": "strapi"
+  },
+  "dependencies": {
+    "@strapi/strapi": "5.61.1",
+    "@strapi/plugin-users-permissions": "5.61.1",
+    "@strapi/plugin-cloud": "5.61.1",
+    "pg": "^8.13.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.30.3",
+    "styled-components": "^6.1.15"
+  },
+  "devDependencies": {
+    "@types/node": "^22",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=20.0.0 <=26.x.x",
+    "npm": ">=6.0.0"
+  }
+}

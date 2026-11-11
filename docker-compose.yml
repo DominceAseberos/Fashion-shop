@@ -1,0 +1,73 @@
+version: '3.8'
+
+services:
+  # 1. PostgreSQL Relational Database for Strapi
+  postgres:
+    image: postgres:16-alpine
+    container_name: cheq_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DATABASE_NAME:-strapi_db}
+      POSTGRES_USER: ${DATABASE_USERNAME:-strapi_user}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD:-strapi_secret_password}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - cheq_network
+
+  # 2. Strapi Headless CMS Engine
+  strapi:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: cheq_strapi
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_CLIENT: postgres
+      DATABASE_HOST: postgres
+      DATABASE_PORT: 5432
+      DATABASE_NAME: ${DATABASE_NAME:-strapi_db}
+      DATABASE_USERNAME: ${DATABASE_USERNAME:-strapi_user}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD:-strapi_secret_password}
+      DATABASE_SSL: 'false'
+      HOST: 0.0.0.0
+      PORT: 1337
+      APP_KEYS: ${APP_KEYS:-sU8LgL6k0b1xH3fW7zQ5eR==,pL2vM9nB4vC6xZ1aD8fG3j==,mK5hN7jB2vC8xZ4aD1fG6e==,wQ9eR2tY5uI8oP1aS4dF7g==}
+      API_TOKEN_SALT: ${API_TOKEN_SALT:-tQ3wE6rT9yU2iO5pA8sD1fG4hJ7k0lZx}
+      ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET:-bV5nX8mK1hN4jB7vC0xZ3aD6fG9e2tY5}
+      JWT_SECRET: ${JWT_SECRET:-uI8oP1aS4dF7gH0jK3lZ6xV9nB2mK5hN}
+      TRANSFER_TOKEN_SALT: ${TRANSFER_TOKEN_SALT:-fG4hJ7k0lZ3wE6rT9yU2iO5pA8sD1bV5}
+      ENCRYPTION_KEY: ${ENCRYPTION_KEY:-xZ3aD6fG9e2tY5uI8oP1aS4dF7gH0jK3}
+    volumes:
+      - ./backend/public/uploads:/opt/app/public/uploads
+    ports:
+      - "1337:1337"
+    networks:
+      - cheq_network
+
+  # 3. React Storefront
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: cheq_storefront
+    restart: unless-stopped
+    depends_on:
+      - strapi
+    environment:
+      VITE_STRAPI_API_URL: http://localhost:1337
+    ports:
+      - "5173:80"
+    networks:
+      - cheq_network
+
+volumes:
+  pgdata:
+
+networks:
+  cheq_network:
+    driver: bridge

@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "collections",
+  "info": {
+    "singularName": "collection",
+    "pluralName": "collections",
+    "displayName": "Collection",
+    "description": "Fashion collections (e.g. Autumn / Winter MMXXVI)"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "season": {
+      "type": "string",
+      "required": true
+    },
+    "intro": {
+      "type": "text"
+    },
+    "heroImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "garments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::garment.garment",
+      "mappedBy": "collection"
+    }
+  }
+}

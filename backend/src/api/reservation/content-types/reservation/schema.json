@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "reservations",
+  "info": {
+    "singularName": "reservation",
+    "pluralName": "reservations",
+    "displayName": "Reservation",
+    "description": "Customer allocation inquiries and reservations"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "customerName": {
+      "type": "string",
+      "required": true
+    },
+    "customerEmail": {
+      "type": "email",
+      "required": true
+    },
+    "customerPhone": {
+      "type": "string"
+    },
+    "garmentName": {
+      "type": "string",
+      "required": true
+    },
+    "garmentIndex": {
+      "type": "string"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["pending", "confirmed", "fulfilled", "cancelled"],
+      "default": "pending"
+    },
+    "notes": {
+      "type": "text"
+    }
+  }
+}

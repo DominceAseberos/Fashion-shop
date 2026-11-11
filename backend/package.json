@@ -5,14 +5,17 @@
   "description": "Strapi CMS v5 for Cheq Fashion Storefront",
   "scripts": {
     "develop": "strapi develop",
+    "db:embedded": "node run-embedded-postgres.mjs",
     "start": "strapi start",
     "build": "strapi build",
     "strapi": "strapi"
   },
   "dependencies": {
-    "@strapi/strapi": "5.61.1",
-    "@strapi/plugin-users-permissions": "5.61.1",
+    "@electric-sql/pglite": "^0.5.16",
+    "@electric-sql/pglite-socket": "^0.2.19",
     "@strapi/plugin-cloud": "5.61.1",
+    "@strapi/plugin-users-permissions": "5.61.1",
+    "@strapi/strapi": "5.61.1",
     "pg": "^8.13.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

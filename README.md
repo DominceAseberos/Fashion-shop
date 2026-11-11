@@ -12,6 +12,18 @@ An editorial, high-end luxury fashion storefront built with **React 19**, **Tail
 
 ---
 
+## 📸 Application Previews
+
+### 1. Luxury E-Commerce Storefront (React 19 + GSAP + Tailwind CSS)
+*Live catalog rendering, smooth scrollytelling, and real-time inventory reservation connected to Strapi.*
+![Cheq Luxury Storefront](docs/screenshots/storefront.png)
+
+### 2. Strapi CMS v5 Content Administration Panel
+*Headless management of garments, collections, editorial journal, and customer reservations.*
+![Strapi CMS Admin Panel](docs/screenshots/strapi-admin.png)
+
+---
+
 ## 🏛️ System Architecture
 
 ```text
@@ -59,6 +71,7 @@ docker compose up --build
 ```bash
 cd backend
 npm install
+npm run db:embedded # Runs embedded PostgreSQL on port 5432
 npm run develop
 ```
 Strapi will automatically bootstrap:

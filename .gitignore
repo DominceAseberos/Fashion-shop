@@ -19,6 +19,7 @@ backend/.tmp/
 backend/.strapi/
 backend/dist/
 backend/build/
+backend/.pglite-data/
 backend/public/uploads/*
 !backend/public/uploads/.gitkeep
 
